@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>בינה · זהות מותג</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800;900&family=Assistant:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0E1220;
+  --ink-soft:#1B2130;
+  --paper:#FFFFFF;
+  --surface:#F5F6FA;
+  --surface-2:#EEF0F8;
+  --muted:#667085;
+  --line:#E6E8EF;
+  --accent:#4F46E5;
+  --accent-2:#7C3AED;
+  --accent-soft:#EEF0FF;
+  --radius:18px;
+  --ff:"Rubik", system-ui, sans-serif;
+  --ff-body:"Assistant", system-ui, sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--ff-body);background:var(--surface);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1040px;margin:0 auto;padding:64px 28px}
+h1,h2,h3,.wm{font-family:var(--ff)}
+.top{margin-bottom:52px}
+.eyebrow{font-size:.8rem;font-weight:700;letter-spacing:.18em;color:var(--accent);text-transform:uppercase}
+h1{font-size:2.4rem;font-weight:800;letter-spacing:-.02em;margin-top:.5rem;line-height:1.15}
+.top p{color:var(--muted);font-size:1.15rem;margin-top:.6rem;max-width:52ch}
+
+.grid{display:grid;gap:20px}
+.two{grid-template-columns:1fr 1fr}
+@media(max-width:760px){.two{grid-template-columns:1fr}}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:40px}
+.card.dark{background:var(--ink);border-color:var(--ink-soft)}
+.tag{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:26px}
+.card.dark .tag{color:#8B93A7}
+
+/* ---------- LOGO LOCKUP ---------- */
+.logo{display:inline-flex;align-items:center;gap:.5em}
+.logo .mark{flex:none;display:block}
+.wm{font-weight:800;letter-spacing:-.02em;line-height:1;color:var(--ink)}
+.card.dark .wm{color:#F4F5FA}
+.logo-xl .wm{font-size:76px}
+.logo-xl .mark{width:66px;height:66px}
+.logo-md .wm{font-size:40px}
+.logo-md .mark{width:36px;height:36px}
+.logo-sm .wm{font-size:26px}
+.logo-sm .mark{width:24px;height:24px}
+.center{display:flex;align-items:center;justify-content:center;min-height:150px}
+
+/* sub-brand lockups */
+.sub{display:inline-flex;align-items:baseline;gap:.4em}
+.sub .track{font-family:var(--ff);font-weight:500;color:var(--muted);font-size:.5em}
+.lockups{display:flex;flex-direction:column;gap:22px}
+.lockups .logo-md .track{font-size:20px}
+
+/* sizes / favicon */
+.sizes{display:flex;align-items:flex-end;gap:28px;flex-wrap:wrap}
+.sizes figure{text-align:center}
+.sizes .chip{border-radius:26%;background:var(--ink);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 22px -10px rgba(14,18,32,.5)}
+.sizes figcaption{font-size:.72rem;color:var(--muted);margin-top:10px}
+
+/* palette */
+.sw-row{display:flex;flex-wrap:wrap;gap:14px}
+.sw{border-radius:12px;border:1px solid var(--line);overflow:hidden;width:150px}
+.sw .chip{height:64px}
+.sw .lbl{padding:8px 12px;font-size:.78rem}
+.sw .lbl b{display:block;font-family:var(--ff);font-weight:600}
+.sw .lbl span{color:var(--muted)}
+
+/* type */
+.type-row{border-top:1px solid var(--line);padding:16px 0;display:flex;justify-content:space-between;align-items:baseline;gap:20px}
+.type-row:first-of-type{border-top:0}
+.type-row .spec{color:var(--muted);font-size:.85rem;white-space:nowrap}
+.t-900{font-family:var(--ff);font-weight:900;font-size:2rem}
+.t-800{font-family:var(--ff);font-weight:800;font-size:1.7rem}
+.t-600{font-family:var(--ff);font-weight:600;font-size:1.35rem}
+.t-body{font-family:var(--ff-body);font-weight:400;font-size:1.1rem}
+
+/* taglines */
+.tags-list{display:flex;flex-direction:column;gap:14px}
+.tags-list li{list-style:none;display:flex;gap:12px;align-items:center;font-family:var(--ff);font-size:1.25rem;font-weight:600}
+.tags-list li .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);flex:none}
+.tags-list .star{color:var(--accent)}
+
+.section-label{font-family:var(--ff);font-weight:700;font-size:1.1rem;margin:44px 0 16px}
+.note{color:var(--muted);font-size:.92rem;margin-top:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="top">
+    <div class="eyebrow">בינה · Brand Identity</div>
+    <h1>בינה — האקדמיה ל-AI לאנשי מקצוע</h1>
+    <p>מותג-על אגנוסטי למקצוע. שפה ויזואלית מודרנית, גיאומטרית ונקייה — בלי סריף. הסימן: ניצוץ הבינה.</p>
+  </div>
+
+  <!-- PRIMARY LOGO -->
+  <div class="grid two">
+    <div class="card">
+      <div class="tag">01 · לוגו ראשי</div>
+      <div class="center">
+        <span class="logo logo-xl">
+          <svg class="mark" viewBox="0 0 100 100" aria-hidden="true">
+            <defs><linearGradient id="gMain" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#7C3AED"/><stop offset="1" stop-color="#4F46E5"/>
+            </linearGradient></defs>
+            <path d="M50 5 C53 34 66 47 95 50 C66 53 53 66 50 95 C47 66 34 53 5 50 C34 47 47 34 50 5 Z" fill="url(#gMain)"/>
+          </svg>
+          <span class="wm">בינה</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="card dark">
+      <div class="tag">02 · על רקע כהה</div>
+      <div class="center">
+        <span class="logo logo-xl">
+          <svg class="mark" viewBox="0 0 100 100" aria-hidden="true">
+            <defs><linearGradient id="gDark" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#A78BFA"/><stop offset="1" stop-color="#818CF8"/>
+            </linearGradient></defs>
+            <path d="M50 5 C53 34 66 47 95 50 C66 53 53 66 50 95 C47 66 34 53 5 50 C34 47 47 34 50 5 Z" fill="url(#gDark)"/>
+          </svg>
+          <span class="wm">בינה</span>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXTENSIBILITY -->
+  <div class="section-label">03 · מותג-על שמתרחב לכל מקצוע</div>
+  <div class="card">
+    <div class="lockups">
+      <span class="logo logo-md sub">
+        <svg class="mark" viewBox="0 0 100 100"><path d="M50 5 C53 34 66 47 95 50 C66 53 53 66 50 95 C47 66 34 53 5 50 C34 47 47 34 50 5 Z" fill="#4F46E5"/></svg>
+        <span class="wm">בינה</span><span class="track">לעורכי דין</span>
+      </span>
+      <span class="logo logo-md sub">
+        <svg class="mark" viewBox="0 0 100 100"><path d="M50 5 C53 34 66 47 95 50 C66 53 53 66 50 95 C47 66 34 53 5 50 C34 47 47 34 50 5 Z" fill="#4F46E5"/></svg>
+        <span class="wm">בינה</span><span class="track">לרואי חשבון</span>
+      </span>
+      <span class="logo logo-md sub">
+        <svg class="mark" viewBox="0 0 100 100"><path d="M50 5 C53 34 66 47 95 50 C66 53 53 66 50 95 C47 66 34 53 5 50 C34 47 47 34 50 5 Z" fill="#4F46E5"/></svg>
+        <span class="wm">בינה</span><span class="track">לרופאים</span>
+      </span>
+    </div>
+    <p class="note">אותו מותג, אותו סימן — רק שם המסלול משתנה. הכניסה הראשונה: "בינה לעורכי דין".</p>
+  </div>
+
+  <!-- MARK / FAVICON -->
+  <div class="grid two" style="margin-top:20px">
+    <div class="card">
+      <div class="tag">04 · הסימן — favicon / אפליקציה</div>
+      <div class="sizes" id="sizes"></div>
+      <p class="note">ניצוץ הבינה — קריא עד 16px, עובד בכל שפה ומקצוע.</p>
+    </div>
+    <div class="card">
+      <div class="tag">05 · פלטה</div>
+      <div class="sw-row">
+        <div class="sw"><div class="chip" style="background:#0E1220"></div><div class="lbl"><b>Ink</b><span>#0E1220</span></div></div>
+        <div class="sw"><div class="chip" style="background:linear-gradient(135deg,#7C3AED,#4F46E5)"></div><div class="lbl"><b>Accent</b><span>#4F46E5 → #7C3AED</span></div></div>
+        <div class="sw"><div class="chip" style="background:#F5F6FA;border-bottom:1px solid var(--line)"></div><div class="lbl"><b>Surface</b><span>#F5F6FA</span></div></div>
+      </div>
+      <p class="note">אקסנט אחד (אינדיגו→סגול), הרבה לובן. הצבע נוגע ~10% מהשטח.</p>
+    </div>
+  </div>
+
+  <!-- TYPE -->
+  <div class="section-label">06 · טיפוגרפיה — Rubik (גיאומטרי, בלי סריף)</div>
+  <div class="card">
+    <div class="type-row"><span class="t-900">בינה מלאכותית</span><span class="spec">Rubik · 900 · כותרות-על</span></div>
+    <div class="type-row"><span class="t-800">לעבוד חכם יותר</span><span class="spec">Rubik · 800 · כותרות</span></div>
+    <div class="type-row"><span class="t-600">מבינה מלאכותית לבינה מקצועית</span><span class="spec">Rubik · 600 · כותרות משנה</span></div>
+    <div class="type-row"><span class="t-body">גוף הטקסט נקרא נעים וברור, בגופן Assistant, בעברית ובאנגלית כאחד.</span><span class="spec">Assistant · 400 · גוף</span></div>
+  </div>
+
+  <!-- TAGLINES -->
+  <div class="section-label">07 · משפטי מותג (Taglines)</div>
+  <div class="card">
+    <ul class="tags-list">
+      <li><span class="dot"></span>מבינה מלאכותית — לבינה מקצועית. <span class="star">★</span></li>
+      <li><span class="dot"></span>AI, בידיים מקצועיות.</li>
+      <li><span class="dot"></span>ללמוד AI. לעבוד חכם יותר.</li>
+      <li><span class="dot"></span>הבינה שמאחורי המקצוע שלך.</li>
+    </ul>
+    <p class="note">המומלץ (★) משחק על השם: מ"בינה מלאכותית" ל"בינה" של איש המקצוע.</p>
+  </div>
+
+</div>
+
+<script>
+var spark = '<svg viewBox="0 0 100 100" width="60%" height="60%"><path d="M50 5 C53 34 66 47 95 50 C66 53 53 66 50 95 C47 66 34 53 5 50 C34 47 47 34 50 5 Z" fill="#A78BFA"/></svg>';
+var sizes = [72,48,32,16];
+document.getElementById('sizes').innerHTML = sizes.map(function(s){
+  return '<figure><div class="chip" style="width:'+s+'px;height:'+s+'px">'+spark+'</div><figcaption>'+s+'px</figcaption></figure>';
+}).join('');
+</script>
+</body>
+</html>
