@@ -10,19 +10,21 @@
   ==========================================================================
   דף נחיתה עצמאי · "עורך הדין המוגבר" · הדרכת AI לעורכי דין
   ==========================================================================
-  הפעלת הטופס (בחר אחת):
+  הפעלת הטופס — FORMSPREE (מחווט; נשאר רק להדביק מזהה):
+  האתר מתארח ב-GitHub Pages (סטטי), לכן הטופס מחווט ל-Formspree ולא ל-Netlify.
 
-  1) אירוח ב-NETLIFY (מומלץ, אפס הגדרות):
-     גררו את התיקייה הזו ל- app.netlify.com/drop. הטופס נקלט אוטומטית
-     (Netlify Forms). ההרשמות יופיעו בלוח הבקרה של Netlify + התראה למייל.
+  צעד יחיד להפעלה:
+    1. היכנסו ל- https://formspree.io , צרו טופס חדש (חינם), והעתיקו את
+       מזהה הטופס בן 8 התווים מהכתובת:  https://formspree.io/f/XXXXXXXX
+    2. החליפו למטה את  XXXXXXXX  בתכונת action של תג ה-<form> במזהה שלכם
+       (מופיע פעם אחת בלבד).
+    3. עשו commit ו-push לאתר החי. ההרשמות יגיעו למייל + ללוח Formspree.
 
-  2) אירוח אחר (Vercel / דומיין קיים / כל שרת):
-     החליפו את התכונה action של הטופס בכתובת Formspree שלכם:
-        <form action="https://formspree.io/f/XXXXXXXX" method="POST">
-     ומחקו את התכונות data-netlify ואת השדה הנסתר form-name.
+  זהו — אין עוד מה לשנות. שדה ה-_gotcha הוא מלכודת ספאם מובנית של Formspree,
+  וה-JS שולח ב-AJAX ומציג הודעת הצלחה בעמוד.
 
-  לחיבור למערכת דיוור (ActiveCampaign / Smoove / Rav-Messer): הפנו את
-  ה-webhook של הטופס למערכת, או החליפו ל-embed של טופס הדיוור.
+  לחיבור למערכת דיוור (ActiveCampaign / Smoove / Rav-Messer): הגדירו ב-Formspree
+  webhook/integration ליעד, או החליפו ל-embed של טופס הדיוור.
   ==========================================================================
 -->
 
@@ -41,13 +43,13 @@
   --cream:#EEF0F6;
   --cream-dim:#C5CAD8;
   --muted:#8B93A7;
-  --gold:#6D5EF0;
-  --gold-lite:#9B7BF7;
-  --gold-deep:#4F46E5;
+  --accent:#4F46E5;
+  --accent-lite:#A78BFA;
+  --accent-deep:#7C3AED;
   --shadow:0 30px 60px -20px rgba(0,0,0,.55);
   --radius:16px;
   --maxw:1160px;
-  --ff-serif:"Rubik", sans-serif;
+  --ff-display:"Rubik", sans-serif;
   --ff-sans:"Assistant", system-ui, sans-serif;
 }
 
@@ -77,14 +79,14 @@ a{color:inherit;text-decoration:none}
 section{position:relative}
 
 /* ---------- typography ---------- */
-h1,h2,h3{font-family:var(--ff-serif);font-weight:700;line-height:1.15;letter-spacing:-.01em}
+h1,h2,h3{font-family:var(--ff-display);font-weight:700;line-height:1.15;letter-spacing:-.01em}
 .eyebrow{
   font-weight:700;font-size:.82rem;letter-spacing:.05em;
-  color:var(--gold);text-transform:none;display:inline-flex;align-items:center;gap:.6rem;
+  color:var(--accent);text-transform:none;display:inline-flex;align-items:center;gap:.6rem;
 }
-.eyebrow::before{content:"";width:34px;height:1px;background:linear-gradient(90deg,var(--gold),transparent)}
+.eyebrow::before{content:"";width:34px;height:1px;background:linear-gradient(90deg,var(--accent),transparent)}
 .section-num{
-  font-family:var(--ff-serif);font-weight:900;font-size:clamp(3rem,7vw,5.5rem);
+  font-family:var(--ff-display);font-weight:900;font-size:clamp(3rem,7vw,5.5rem);
   color:transparent;-webkit-text-stroke:1px rgba(124,58,237,.28);opacity:.75;line-height:1;
 }
 .lead{color:var(--cream-dim);font-size:1.12rem}
@@ -92,7 +94,7 @@ h1,h2,h3{font-family:var(--ff-serif);font-weight:700;line-height:1.15;letter-spa
 
 /* ---------- buttons ---------- */
 .btn{
-  --b:var(--gold);
+  --b:var(--accent);
   display:inline-flex;align-items:center;justify-content:center;gap:.6rem;
   font-family:var(--ff-sans);font-weight:700;font-size:1.02rem;
   padding:1rem 1.9rem;border-radius:999px;border:1px solid transparent;cursor:pointer;
@@ -100,12 +102,12 @@ h1,h2,h3{font-family:var(--ff-serif);font-weight:700;line-height:1.15;letter-spa
   will-change:transform;
 }
 .btn-gold{
-  background:linear-gradient(180deg,var(--gold-lite),var(--gold));
+  background:linear-gradient(180deg,var(--accent-lite),var(--accent));
   color:#fff;box-shadow:0 14px 30px -12px rgba(109,94,240,.6);
 }
 .btn-gold:hover{transform:translateY(-3px);box-shadow:0 22px 40px -12px rgba(109,94,240,.7)}
 .btn-ghost{background:transparent;border-color:var(--line);color:var(--cream)}
-.btn-ghost:hover{border-color:var(--gold);color:var(--gold-lite)}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent-lite)}
 
 /* ---------- top bar ---------- */
 header.bar{
@@ -119,10 +121,10 @@ header.bar{
 .brand .glyph{
   width:30px;height:30px;flex:0 0 auto;display:grid;place-items:center;
 }
-.brand b{font-family:var(--ff-serif);font-size:1.16rem;letter-spacing:0}
+.brand b{font-family:var(--ff-display);font-size:1.16rem;letter-spacing:0}
 .brand span{font-size:.72rem;color:var(--muted);display:block;font-weight:600;letter-spacing:.02em;margin-top:-3px}
 .bar .cta-sm{display:flex;align-items:center;gap:1rem}
-.bar .pill{font-size:.78rem;font-weight:700;color:var(--gold-lite);border:1px solid var(--line);padding:.35rem .8rem;border-radius:999px}
+.bar .pill{font-size:.78rem;font-weight:700;color:var(--accent-lite);border:1px solid var(--line);padding:.35rem .8rem;border-radius:999px}
 .bar .btn{padding:.6rem 1.2rem;font-size:.92rem}
 @media(max-width:720px){.bar .pill{display:none}}
 
@@ -137,15 +139,15 @@ header.bar{
 @media(max-width:900px){.hero-grid{grid-template-columns:1fr;gap:34px}}
 .hero h1{font-size:clamp(2.5rem,5.4vw,4.15rem);font-weight:900;margin:1.1rem 0 .5rem}
 .hero h1 .gild{
-  background:linear-gradient(180deg,var(--gold-lite),var(--gold));
+  background:linear-gradient(180deg,var(--accent-lite),var(--accent));
   -webkit-background-clip:text;background-clip:text;color:transparent;
 }
-.hero .sub{font-family:var(--ff-serif);font-size:clamp(1.15rem,2.2vw,1.5rem);color:var(--cream);font-weight:500;margin-bottom:1.1rem}
+.hero .sub{font-family:var(--ff-display);font-size:clamp(1.15rem,2.2vw,1.5rem);color:var(--cream);font-weight:500;margin-bottom:1.1rem}
 .hero p.lead{max-width:44ch;margin-bottom:1.9rem}
 .hero-cta{display:flex;flex-wrap:wrap;gap:.9rem;align-items:center}
 .trust{margin-top:1.7rem;display:flex;flex-wrap:wrap;gap:.5rem 1.4rem;color:var(--muted);font-size:.9rem;font-weight:600}
 .trust span{display:inline-flex;align-items:center;gap:.45rem}
-.trust svg{width:15px;height:15px;color:var(--gold)}
+.trust svg{width:15px;height:15px;color:var(--accent)}
 
 /* hero card */
 .hero-card{
@@ -153,13 +155,13 @@ header.bar{
   border:1px solid var(--line);border-radius:var(--radius);
   padding:26px;box-shadow:var(--shadow);position:relative;
 }
-.hero-card .tag{font-size:.78rem;font-weight:700;letter-spacing:.12em;color:var(--gold);margin-bottom:1rem}
-.hero-card h4{font-family:var(--ff-serif);font-size:1.3rem;margin-bottom:1.1rem;color:var(--cream)}
+.hero-card .tag{font-size:.78rem;font-weight:700;letter-spacing:.12em;color:var(--accent);margin-bottom:1rem}
+.hero-card h4{font-family:var(--ff-display);font-size:1.3rem;margin-bottom:1.1rem;color:var(--cream)}
 .hero-card ul{list-style:none;display:flex;flex-direction:column;gap:.95rem}
 .hero-card li{display:flex;gap:.8rem;align-items:flex-start;font-size:1rem}
 .hero-card li .n{
   flex:0 0 auto;width:26px;height:26px;border-radius:8px;background:rgba(124,58,237,.14);
-  border:1px solid var(--line);color:var(--gold-lite);font-weight:800;display:grid;place-items:center;font-size:.82rem;
+  border:1px solid var(--line);color:var(--accent-lite);font-weight:800;display:grid;place-items:center;font-size:.82rem;
 }
 .hero-card li b{font-weight:700;color:var(--cream)}
 .hero-card li small{display:block;color:var(--muted);font-weight:500;font-size:.86rem;line-height:1.45}
@@ -172,12 +174,12 @@ header.bar{
 /* pain pull-quote */
 .pain{padding:64px 0;background:linear-gradient(180deg,transparent, rgba(19,39,61,.5), transparent)}
 .pain blockquote{
-  font-family:var(--ff-serif);font-size:clamp(1.5rem,3.4vw,2.4rem);font-weight:500;line-height:1.4;
+  font-family:var(--ff-display);font-size:clamp(1.5rem,3.4vw,2.4rem);font-weight:500;line-height:1.4;
   max-width:24ch;color:var(--cream);position:relative;padding-top:1.2rem;
 }
-.pain blockquote::before{content:"”";position:absolute;top:-1.4rem;right:-.2rem;font-size:5rem;color:var(--gold);opacity:.5;font-family:var(--ff-serif)}
+.pain blockquote::before{content:"”";position:absolute;top:-1.4rem;right:-.2rem;font-size:5rem;color:var(--accent);opacity:.5;font-family:var(--ff-display)}
 .pain .answer{margin-top:1.6rem;max-width:52ch;color:var(--cream-dim);font-size:1.12rem}
-.pain .answer b{color:var(--gold-lite)}
+.pain .answer b{color:var(--accent-lite)}
 
 /* cards grid */
 .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
@@ -187,22 +189,22 @@ header.bar{
   border:1px solid var(--line-soft);border-radius:var(--radius);padding:28px 26px;
   transition:transform .3s cubic-bezier(.2,.8,.2,1),border-color .3s, box-shadow .3s;position:relative;overflow:hidden;
 }
-.card::before{content:"";position:absolute;inset:0 0 auto 0;height:2px;background:linear-gradient(90deg,var(--gold),transparent);opacity:0;transition:opacity .3s}
+.card::before{content:"";position:absolute;inset:0 0 auto 0;height:2px;background:linear-gradient(90deg,var(--accent),transparent);opacity:0;transition:opacity .3s}
 .card:hover{transform:translateY(-6px);border-color:var(--line);box-shadow:var(--shadow)}
 .card:hover::before{opacity:1}
 .card .ico{
   width:52px;height:52px;border-radius:12px;display:grid;place-items:center;margin-bottom:18px;
-  background:rgba(124,58,237,.12);border:1px solid var(--line);color:var(--gold-lite);
+  background:rgba(124,58,237,.12);border:1px solid var(--line);color:var(--accent-lite);
 }
 .card .ico svg{width:26px;height:26px}
-.card .kicker{font-size:.78rem;font-weight:800;letter-spacing:.14em;color:var(--gold);opacity:.85}
+.card .kicker{font-size:.78rem;font-weight:800;letter-spacing:.14em;color:var(--accent);opacity:.85}
 .card h3{font-size:1.4rem;margin:.35rem 0 .6rem;color:var(--cream)}
 .card p{color:var(--muted);font-size:1rem}
 
 /* protocol / differentiator */
 .proto-intro{
-  font-family:var(--ff-serif);font-size:clamp(1.25rem,2.6vw,1.7rem);color:var(--cream);font-weight:500;
-  max-width:34ch;line-height:1.4;border-inline-start:3px solid var(--gold);padding-inline-start:1.1rem;margin-bottom:40px;
+  font-family:var(--ff-display);font-size:clamp(1.25rem,2.6vw,1.7rem);color:var(--cream);font-weight:500;
+  max-width:34ch;line-height:1.4;border-inline-start:3px solid var(--accent);padding-inline-start:1.1rem;margin-bottom:40px;
 }
 .steps{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
 @media(max-width:760px){.steps{grid-template-columns:1fr}}
@@ -211,7 +213,7 @@ header.bar{
   background:rgba(19,39,61,.4);transition:border-color .3s,background .3s;
 }
 .step:hover{border-color:var(--line);background:rgba(22,48,74,.6)}
-.step .num{font-family:var(--ff-serif);font-weight:900;font-size:1.6rem;color:var(--gold);line-height:1;flex:0 0 auto;min-width:2.2rem}
+.step .num{font-family:var(--ff-display);font-weight:900;font-size:1.6rem;color:var(--accent);line-height:1;flex:0 0 auto;min-width:2.2rem}
 .step h4{font-family:var(--ff-sans);font-weight:800;font-size:1.1rem;margin-bottom:.25rem;color:var(--cream)}
 .step p{color:var(--muted);font-size:.96rem}
 .callout{
@@ -219,22 +221,22 @@ header.bar{
   background:linear-gradient(180deg,rgba(124,58,237,.1),rgba(124,58,237,.03));
   border:1px solid var(--line);border-radius:14px;padding:20px 22px;
 }
-.callout svg{width:24px;height:24px;color:var(--gold);flex:0 0 auto;margin-top:2px}
+.callout svg{width:24px;height:24px;color:var(--accent);flex:0 0 auto;margin-top:2px}
 .callout p{color:var(--cream-dim);font-size:1rem}
-.callout b{color:var(--gold-lite)}
+.callout b{color:var(--accent-lite)}
 
 /* agenda timeline */
 .timeline{display:flex;flex-direction:column;gap:0;max-width:760px}
 .tl-item{display:grid;grid-template-columns:130px 1fr;gap:22px;padding:20px 0;border-top:1px solid var(--line-soft);align-items:baseline}
 .tl-item:last-child{border-bottom:1px solid var(--line-soft)}
-.tl-time{font-weight:800;color:var(--gold-lite);font-size:.95rem;letter-spacing:.02em;font-variant-numeric:tabular-nums}
-.tl-body b{font-family:var(--ff-serif);font-weight:700;font-size:1.18rem;color:var(--cream)}
+.tl-time{font-weight:800;color:var(--accent-lite);font-size:.95rem;letter-spacing:.02em;font-variant-numeric:tabular-nums}
+.tl-body b{font-family:var(--ff-display);font-weight:700;font-size:1.18rem;color:var(--cream)}
 .tl-body p{color:var(--muted);font-size:.98rem;margin-top:.2rem}
 @media(max-width:600px){.tl-item{grid-template-columns:1fr;gap:.3rem}}
 
 /* bonuses */
-.bonus-note{color:var(--gold-lite);font-family:var(--ff-serif);font-size:1.15rem;font-style:italic;margin-bottom:34px}
-.card .gift{position:absolute;inset-inline-end:20px;top:20px;font-size:.72rem;font-weight:800;color:var(--gold);border:1px solid var(--line);padding:.25rem .7rem;border-radius:999px}
+.bonus-note{color:var(--accent-lite);font-family:var(--ff-display);font-size:1.15rem;font-style:italic;margin-bottom:34px}
+.card .gift{position:absolute;inset-inline-end:20px;top:20px;font-size:.72rem;font-weight:800;color:var(--accent);border:1px solid var(--line);padding:.25rem .7rem;border-radius:999px}
 
 /* faq */
 .faq-list{max-width:820px;display:flex;flex-direction:column;gap:12px}
@@ -248,7 +250,7 @@ details.faq summary{
   display:flex;justify-content:space-between;align-items:center;gap:1rem;color:var(--cream);
 }
 details.faq summary::-webkit-details-marker{display:none}
-details.faq summary .plus{color:var(--gold);font-size:1.5rem;transition:transform .3s;flex:0 0 auto}
+details.faq summary .plus{color:var(--accent);font-size:1.5rem;transition:transform .3s;flex:0 0 auto}
 details.faq[open] summary .plus{transform:rotate(45deg)}
 details.faq p{padding:0 0 22px;color:var(--muted);font-size:1.02rem;max-width:70ch}
 
@@ -263,7 +265,7 @@ details.faq p{padding:0 0 22px;color:var(--muted);font-size:1.02rem;max-width:70
 .reg-copy h2{font-size:clamp(2rem,4vw,3rem);margin:.7rem 0 1rem}
 .stack{list-style:none;display:flex;flex-direction:column;gap:.75rem;margin-top:1.4rem}
 .stack li{display:flex;gap:.7rem;align-items:flex-start;color:var(--cream-dim)}
-.stack li svg{width:20px;height:20px;color:var(--gold);flex:0 0 auto;margin-top:3px}
+.stack li svg{width:20px;height:20px;color:var(--accent);flex:0 0 auto;margin-top:3px}
 .form-box{
   background:linear-gradient(180deg,var(--panel-2),var(--ink-2));
   border:1px solid var(--line);border-radius:20px;padding:30px;box-shadow:var(--shadow);
@@ -277,7 +279,7 @@ details.faq p{padding:0 0 22px;color:var(--muted);font-size:1.02rem;max-width:70
   background:rgba(11,26,43,.7);color:var(--cream);font-family:var(--ff-sans);font-size:1rem;transition:border-color .2s,box-shadow .2s;
 }
 .field input::placeholder{color:#6f8199}
-.field input:focus,.field select:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(124,58,237,.18)}
+.field input:focus,.field select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(124,58,237,.18)}
 .field select{appearance:none;cursor:pointer}
 .form-box .btn-gold{width:100%;margin-top:8px}
 .form-fine{margin-top:.9rem;font-size:.82rem;color:var(--muted);text-align:center}
@@ -286,7 +288,7 @@ details.faq p{padding:0 0 22px;color:var(--muted);font-size:1.02rem;max-width:70
   text-align:center;padding:20px 6px;
 }
 #reg-success .check{width:62px;height:62px;border-radius:50%;background:rgba(124,58,237,.14);border:1px solid var(--line);display:grid;place-items:center;margin:0 auto 16px}
-#reg-success .check svg{width:32px;height:32px;color:var(--gold-lite)}
+#reg-success .check svg{width:32px;height:32px;color:var(--accent-lite)}
 #reg-success h3{font-size:1.5rem;margin-bottom:.5rem}
 #reg-success p{color:var(--cream-dim)}
 
@@ -307,7 +309,7 @@ footer .disc{max-width:52ch;line-height:1.5}
 </head>
 <body>
 
-<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="sg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9B7BF7"/><stop offset="1" stop-color="#4F46E5"/></linearGradient></defs></svg>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="sg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7C3AED"/><stop offset="1" stop-color="#4F46E5"/></linearGradient></defs></svg>
 
 <!-- ============ TOP BAR ============ -->
 <header class="bar">
@@ -330,7 +332,7 @@ footer .disc{max-width:52ch;line-height:1.5}
   <div class="wrap hero-grid">
     <div>
       <span class="eyebrow reveal">הדרכה חינמית לעורכי דין</span>
-      <h1 class="reveal" style="transition-delay:.06s">השעתיים שמחזירות לכם <span class="gild">שבוע עבודה</span></h1>
+      <h1 class="reveal" style="transition-delay:.06s">השעתיים שמשנות את <span class="gild">שיטת העבודה שלכם</span></h1>
       <p class="sub reveal" style="transition-delay:.12s">AI למשרד עורכי הדין. בלי הזיות, בלי לסכן חיסיון, בלי באזז.</p>
       <p class="lead reveal" style="transition-delay:.18s">לא תיאוריה, אלא שלוש עבודות אמיתיות שנבצע יחד, חי, על תיקים אמיתיים: סיכום פסק דין, ניסוח מכתב התראה, וסקירת חוזה. תצאו עם מתודולוגיה שאפשר לעמוד מאחוריה מול לקוח ומול בית המשפט.</p>
       <div class="hero-cta reveal" style="transition-delay:.24s">
@@ -349,8 +351,8 @@ footer .disc{max-width:52ch;line-height:1.5}
       <div class="tag">מה תעשו, לא מה תשמעו</div>
       <h4>שלוש הדגמות חיות</h4>
       <ul>
-        <li><span class="n">1</span><span><b>סיכום פסק דין</b><small>30 עמודים לשלד טענות, בדקה.</small></span></li>
-        <li><span class="n">2</span><span><b>ניסוח מכתב התראה</b><small>ממכתב לבן למכתב מוכן, ב-20 שניות.</small></span></li>
+        <li><span class="n">1</span><span><b>סיכום פסק דין</b><small>30 עמודים לשלד טענות, תוך כדקה.</small></span></li>
+        <li><span class="n">2</span><span><b>ניסוח מכתב התראה</b><small>ממכתב לבן למכתב מוכן, תוך שניות.</small></span></li>
         <li><span class="n">3</span><span><b>סקירת חוזה</b><small>10 הסיכונים המרכזיים, עם ציטוט לאימות.</small></span></li>
       </ul>
     </aside>
@@ -378,13 +380,13 @@ footer .disc{max-width:52ch;line-height:1.5}
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 3v5h5M8 13h8M8 17h6M8 9h2"/><path d="M6 3h9l5 5v11a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/></svg></div>
         <div class="kicker">ניתוח</div>
         <h3>סיכום פסק דין</h3>
-        <p>פסק דין או פרוטוקול של 30 עמודים לשלד טענות מסודר, בדקה אחת. כולל חילוץ לוח זמנים כרונולוגי אוטומטי.</p>
+        <p>פסק דין או פרוטוקול של 30 עמודים לשלד טענות מסודר, תוך כדקה. כולל חילוץ לוח זמנים כרונולוגי אוטומטי.</p>
       </article>
       <article class="card reveal" style="transition-delay:.08s">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 19l7-7 3 3-7 7-3-3zM18 13l-1.5-1.5M2 22l4-1 12-12-3-3L3 18l-1 4z"/></svg></div>
         <div class="kicker">ניסוח</div>
         <h3>מכתב התראה</h3>
-        <p>ממכתב לבן למכתב מוכן ב-20 שניות, בעברית משפטית חדה, תחת פיקוד מלא שלכם ובלי אסמכתאות מומצאות.</p>
+        <p>ממכתב לבן למכתב מוכן תוך שניות, בעברית משפטית חדה, תחת פיקוד מלא שלכם, עם אסמכתאות מסומנות לאימות.</p>
       </article>
       <article class="card reveal" style="transition-delay:.16s">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 12l2 2 4-4M7 3h10a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/></svg></div>
@@ -452,7 +454,7 @@ footer .disc{max-width:52ch;line-height:1.5}
       <article class="card reveal" style="transition-delay:.08s"><span class="gift">מתנה</span>
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l7 4v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V7l7-4z"/></svg></div>
         <h3>צ׳קליסט חיסיון</h3>
-        <p>דף אחד, שיטת רמזור: מה מותר ומה אסור להזין ל-AI, ואיך לאנונימז ב-30 שניות.</p>
+        <p>דף אחד, שיטת רמזור: מה מותר ומה אסור להזין ל-AI, ואיך לבצע אנונימיזציה ב-30 שניות.</p>
       </article>
       <article class="card reveal" style="transition-delay:.16s"><span class="gift">מתנה</span>
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15 10l5-3v10l-5-3v-4zM3 6h12a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1z"/></svg></div>
@@ -472,7 +474,7 @@ footer .disc{max-width:52ch;line-height:1.5}
     </div>
     <div class="faq-list">
       <details class="faq reveal"><summary>צריך ידע קודם ב-AI?<span class="plus">+</span></summary><p>לא. מתחילים מאפס ובונים שלב אחר שלב. אם אתם יודעים לפתוח דפדפן, אתם מוכנים.</p></details>
-      <details class="faq reveal"><summary>זה בטוח מבחינת חיסיון הלקוח?<span class="plus">+</span></summary><p>נקדיש לכך מקטע שלם. תצאו עם כללים ברורים, צ׳קליסט מעשי, וטכניקת אנונימיזציה שמורידה את הסיכון לאפס.</p></details>
+      <details class="faq reveal"><summary>זה בטוח מבחינת חיסיון הלקוח?<span class="plus">+</span></summary><p>נקדיש לכך מקטע שלם. תצאו עם כללים ברורים, צ׳קליסט מעשי, וטכניקת אנונימיזציה שממזערת את הסיכון.</p></details>
       <details class="faq reveal"><summary>לא אוכל להשתתף בשידור החי, כדאי להירשם?<span class="plus">+</span></summary><p>בהחלט. כל הנרשמים מקבלים את ההקלטה ואת חבילת הבונוסים למייל, גם בלי להשתתף בשידור.</p></details>
       <details class="faq reveal"><summary>זו הרצאת מכירות?<span class="plus">+</span></summary><p>לא. שעתיים של תוכן ועבודה חיה. בסוף נספר בקצרה על המשך הדרך למי שירצה, וזהו.</p></details>
     </div>
@@ -497,9 +499,10 @@ footer .disc{max-width:52ch;line-height:1.5}
       <h3>הרשמה להדרכה</h3>
       <p class="fb-sub">ללא עלות · ללא ספאם · הסרה בכל עת</p>
 
-      <form id="reg-form" name="registration" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-        <input type="hidden" name="form-name" value="registration" />
-        <p class="hp"><label>אל תמלאו שדה זה: <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
+      <!-- ⬇︎ החליפו XXXXXXXX במזהה הטופס שלכם מ-Formspree (ראו הערה בראש הקובץ) -->
+      <form id="reg-form" action="https://formspree.io/f/XXXXXXXX" method="POST">
+        <input type="hidden" name="_subject" value="הרשמה חדשה · הדרכת בינה לעורכי דין" />
+        <p class="hp"><label>אל תמלאו שדה זה: <input name="_gotcha" tabindex="-1" autocomplete="off" /></label></p>
 
         <div class="field">
           <label for="name">שם מלא</label>
@@ -569,15 +572,19 @@ footer .disc{max-width:52ch;line-height:1.5}
   }
 })();
 
-/* form submit: works on Netlify (auto-capture), and shows success in any host/preview */
+/* form submit: posts to Formspree via AJAX, then shows the success message */
 (function(){
   var form = document.getElementById('reg-form');
   if(!form) return;
   form.addEventListener('submit', function(e){
     e.preventDefault();
-    var body = new URLSearchParams(new FormData(form)).toString();
-    fetch('/', {method:'POST', headers:{'Content-Type':'application/x-www-form-urlencoded'}, body:body})
-      .catch(function(err){ console.error('form post failed (expected off-Netlify):', err); })
+    fetch(form.action, {
+      method:'POST',
+      body: new FormData(form),
+      headers:{'Accept':'application/json'}
+    })
+      .then(function(res){ if(!res.ok){ console.error('Formspree status', res.status, '— ודאו שהחלפתם את XXXXXXXX במזהה הטופס.'); } })
+      .catch(function(err){ console.error('form post failed:', err); })
       .finally(function(){
         form.style.display='none';
         document.getElementById('reg-success').hidden=false;
